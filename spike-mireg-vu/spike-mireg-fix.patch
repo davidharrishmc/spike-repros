@@ -1,0 +1,15 @@
+diff --git a/riscv/csrs.cc b/riscv/csrs.cc
+index bd81d89f..acf24a69 100644
+--- a/riscv/csrs.cc
++++ b/riscv/csrs.cc
+@@ -2032,6 +2032,10 @@ sscsrind_reg_csr_t::sscsrind_reg_csr_t(processor_t* const proc, const reg_t addr
+ }
+ 
+ void sscsrind_reg_csr_t::verify_permissions(insn_t insn, bool write) const {
++  // mireg* are M-level CSRs: below M, they raise illegal instruction before any stateen or V check
++  if (get_field(address, 0x300) == PRV_M)
++    csr_t::verify_permissions(insn, write);
++
+   if (proc->extension_enabled(EXT_SMSTATEEN)) {
+     if ((state->prv < PRV_M) && !(state->mstateen[0]->read() & MSTATEEN0_CSRIND))
+       throw trap_illegal_instruction(insn.bits());
