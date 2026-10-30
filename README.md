@@ -5,4 +5,4 @@ Standalone reproducers for issues filed against [riscv-software-src/riscv-isa-si
 | Issue | Directory | Tarball |
 |---|---|---|
 | [riscv-isa-sim#2501](https://github.com/riscv-software-src/riscv-isa-sim/issues/2501) | [spike-mireg-vu](spike-mireg-vu/) | [spike-mireg-vu.tar.gz](spike-mireg-vu.tar.gz) |
-| riscv-isa-sim#TBD | [spike-vstip-stce0](spike-vstip-stce0/) | [spike-vstip-stce0.tar.gz](spike-vstip-stce0.tar.gz) |
+| [riscv-isa-sim#2504](https://github.com/riscv-software-src/riscv-isa-sim/issues/2504) | [spike-vstip-stce0](spike-vstip-stce0/) | [spike-vstip-stce0.tar.gz](spike-vstip-stce0.tar.gz) |
