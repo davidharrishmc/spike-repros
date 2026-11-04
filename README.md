@@ -7,3 +7,4 @@ Standalone reproducers for issues filed against [riscv-software-src/riscv-isa-si
 | [riscv-isa-sim#2501](https://github.com/riscv-software-src/riscv-isa-sim/issues/2501) | [spike-mireg-vu](spike-mireg-vu/) | [spike-mireg-vu.tar.gz](spike-mireg-vu.tar.gz) |
 | [riscv-isa-sim#2504](https://github.com/riscv-software-src/riscv-isa-sim/issues/2504) | [spike-vstip-stce0](spike-vstip-stce0/) | [spike-vstip-stce0.tar.gz](spike-vstip-stce0.tar.gz) |
 | [riscv-isa-sim#2511](https://github.com/riscv-software-src/riscv-isa-sim/issues/2511)-[#2525](https://github.com/riscv-software-src/riscv-isa-sim/issues/2525) (Debug spec; list in the directory README) | [spike-debug-spec](spike-debug-spec/) | [spike-debug-spec.tar.gz](spike-debug-spec.tar.gz) |
+| [riscv-isa-sim#2527](https://github.com/riscv-software-src/riscv-isa-sim/issues/2527) | [spike-resumereq-running](spike-resumereq-running/) | [spike-resumereq-running.tar.gz](spike-resumereq-running.tar.gz) |

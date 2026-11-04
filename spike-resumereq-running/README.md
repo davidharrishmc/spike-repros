@@ -1,4 +1,4 @@
-# Spike: a resume request written to a running hart is not ignored
+# Spike: a resume request written to a running hart is not ignored ([riscv-isa-sim#2527](https://github.com/riscv-software-src/riscv-isa-sim/issues/2527))
 
 `SPIKE=/path/to/spike ./run.sh` builds `prog.S` (a one-instruction loop) and runs `repro.tcl` in OpenOCD against Spike's remote-bitbang port.
 
