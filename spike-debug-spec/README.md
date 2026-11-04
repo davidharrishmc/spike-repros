@@ -26,7 +26,7 @@ Needs `riscv64-unknown-elf-gcc` and OpenOCD (tested with 0.12.0+dev-02355-g74d0c
 | [riscv-isa-sim#2521](https://github.com/riscv-software-src/riscv-isa-sim/issues/2521): with --dm-auth, an unauthenticated DM exposes hart state | `./run.sh 2521` | 13 ([line 264](repro.tcl#L264)) | auth (`--dm-auth`) |
 | [riscv-isa-sim#2522](https://github.com/riscv-software-src/riscv-isa-sim/issues/2522): (Debug 1.0) Access Register with bit 23 set is not rejected | `./run.sh 2522` | 14 ([line 280](repro.tcl#L280)) | v10 |
 | [riscv-isa-sim#2523](https://github.com/riscv-software-src/riscv-isa-sim/issues/2523): (Debug 1.0) abstractauto bits for data/progbuf registers that don't exist are writable | `./run.sh 2523` | 15 ([line 284](repro.tcl#L284)) | v10 |
-| [riscv-isa-sim#2524](https://github.com/riscv-software-src/riscv-isa-sim/issues/2524): dcsr.prv (WARL in Debug 1.0) stores the reserved encoding 2 | `./run.sh 2524` | 16 ([line 294](repro.tcl#L294)) | v10 |
+| [riscv-isa-sim#2524](https://github.com/riscv-software-src/riscv-isa-sim/issues/2524): dcsr.prv (WARL in Debug 1.0) stores the reserved encoding 2 (closed: the `prv` field text allows legalizing at `dret`) | `./run.sh 2524` | 16 ([line 294](repro.tcl#L294)) | v10 |
 | [riscv-isa-sim#2525](https://github.com/riscv-software-src/riscv-isa-sim/issues/2525): haltsum0 is not implemented (reads fail with op 2) | `./run.sh 2525` | 19 ([line 316](repro.tcl#L316)) | p2 (`-p2`) |
 
 Notes:
