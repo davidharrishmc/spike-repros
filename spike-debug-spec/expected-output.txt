@@ -10,12 +10,13 @@ RESULT 4 sbaddress0 with sbcs=0x00000000: observed 0x80000000; spec requires 0x0
 RESULT 4 sbdata1 with sbcs=0x00000000: observed 0x00001234; spec requires 0x00000000 (register not present) -> BUG
 RESULT 4 sbcs after writing sbdata0 (absent): observed 0x00003000; spec requires 0x00000000 (no effect) -> BUG
 RESULT 5 Access Register transfer=0 aarsize=4 cmderr: observed 2; spec requires 0 (nothing to do) -> BUG
+RESULT 5 Access Register transfer=0 postexec=1 aarsize=4 (progbuf0=ebreak) cmderr: observed 2; spec requires 0 (runs the Program Buffer) -> BUG
 RESULT 6 aarpostincrement read x5 (0x55), x6=0x66: cmderr=0 first=0x00000055, abstractauto=0x00000001, after autoexec: observed 0x00000055; spec requires 0x00000066, or cmderr=2 -> BUG
 RESULT 7 step with stepie=0 (stepie reads 0), mip=0x88, MIE=1, dpc before=0x80000024 (loop=0x0000000080000024): dpc/mcause/dcsr.cause: observed 0x8000002a/0x8000000000000003/4; spec requires 0x0000000080000024/0x0/4 (no interrupt taken) -> BUG
 RESULT 9 BYPASS (IR 0x1f) capture after shifting in 1: observed 01; spec requires 0 -> BUG
 RESULT 9 IR 0x00, 8-bit DR scan of 0xa5: observed 0x00; spec requires 0x4a (1-bit BYPASS: 0 then TDI delayed) -> BUG
 RESULT 9 IR 0x05, 8-bit DR scan of 0xa5: observed 0x00; spec requires 0x4a (1-bit BYPASS: 0 then TDI delayed) -> BUG
-RESULT 10 after a failed DMI read: op of next two nop scans / dtmcs.dmistat: observed 2, 0 / 0; spec requires 2, 2 / 2 (sticky until dmireset) -> BUG
+RESULT 10 after a failed DMI read: dtmcs.dmistat / op of next two nop dmi scans: observed 0 / 2, 0; spec requires 2 / 2, 2 (sticky until dmireset) -> BUG
 RESULT 11 Access Register postexec=1, transfer=0 with progbufsize=0: cmderr: observed 0; spec requires 2 (not supported) -> BUG
 RESULT 10 back-to-back DMI scans with --dmi-rti: op of second scan / dtmcs.dmistat: observed 3 / 0; spec requires 3 / 3 -> BUG
 RESULT 12a control, no access while busy (busy=1): cmderr: observed 0; spec requires 0 -> OK
@@ -25,7 +26,7 @@ RESULT 12d write abstractauto (0) while busy (busy=1): cmderr: observed 0; spec 
 RESULT 12e read progbuf0 while busy (busy=1): cmderr: observed 0; spec requires 1 (busy) -> BUG
 RESULT 12f write progbuf0 (same value) while busy (busy=1): cmderr: observed 0; spec requires 1 (busy) -> BUG
 RESULT 12g resumereq written while busy (busy=1; allresumeack right after the write=0): halted after the command: observed 0; spec requires 1 (should: write ignored) -> BUG
-RESULT 13 unauthenticated reads: dmstatus/haltsum0/hartinfo/abstractcs: observed 0x004c0c02/0x00000000/0x001123a0/0x02000002; spec requires only authenticated/authbusy/version nonzero in dmstatus; others 0 -> BUG
+RESULT 13 unauthenticated reads: dmstatus/hartinfo/abstractcs: observed 0x004c0c02/0x001123a0/0x02000002; spec requires only authenticated/authbusy/version nonzero in dmstatus; others 0 -> BUG
 RESULT 14 (1.0) Access Register read of x5 with bit 23=1: cmderr: observed 0; spec requires 2 (not supported) -> BUG
 RESULT 15 (1.0) abstractauto after writing all 1s (datacount=2, progbufsize=2): observed 0xffff0fff; spec requires 0x00030003 -> BUG
 RESULT 16 (1.0) dcsr.prv after writing 2 (reserved): observed 2; spec requires 0, 1 or 3 (WARL: legal value) -> BUG

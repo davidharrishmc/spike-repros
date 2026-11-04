@@ -140,6 +140,11 @@ wr 0x38 0x00007000
 #    placing valid values into aarsize or regno").
 set e [cmd [expr {(4 << 20) | 0x1005}]]
 result 5 "Access Register transfer=0 aarsize=4 cmderr" $e "0 (nothing to do)" [expr {$e == 0}]
+#    The same with postexec=1 (running the Program Buffer, the use the
+#    spec describes), progbuf0=ebreak.
+wr 0x20 0x00100073
+set e [cmd [expr {(4 << 20) | (1 << 18) | 0x1005}]]
+result 5 "Access Register transfer=0 postexec=1 aarsize=4 (progbuf0=ebreak) cmderr" $e "0 (runs the Program Buffer)" [expr {$e == 0}]
 
 # 6. aarpostincrement=1 must either increment regno or fail with cmderr=2.
 set e [cmd [expr {(3 << 20) | (1 << 19) | (1 << 17) | 0x1005}]]
@@ -195,11 +200,12 @@ set abits [expr {($dtmcs >> 4) & 0x3f}]
 set w [expr {$abits + 34}]
 irscan riscv.cpu 0x11
 drscan riscv.cpu $w [format 0x%x [expr {(0x1d << 34) | 1}]]
-set c1 [expr {"0x[drscan riscv.cpu $w 0]" & 3}]
-set c2 [expr {"0x[drscan riscv.cpu $w 0]" & 3}]
 irscan riscv.cpu 0x10
 set dmistat [expr {("0x[drscan riscv.cpu 32 0]" >> 10) & 3}]
-result 10 "after a failed DMI read: op of next two nop scans / dtmcs.dmistat" "$c1, $c2 / $dmistat" "2, 2 / 2 (sticky until dmireset)" \
+irscan riscv.cpu 0x11
+set c1 [expr {"0x[drscan riscv.cpu $w 0]" & 3}]
+set c2 [expr {"0x[drscan riscv.cpu $w 0]" & 3}]
+result 10 "after a failed DMI read: dtmcs.dmistat / op of next two nop dmi scans" "$dmistat / $c1, $c2" "2 / 2, 2 (sticky until dmireset)" \
     [expr {$c1 == 2 && $c2 == 2 && $dmistat == 2}]
 irscan riscv.cpu 0x10
 drscan riscv.cpu 32 0x10000
@@ -258,12 +264,12 @@ result 12g [format "resumereq written while busy (busy=%d; allresumeack right af
 # 13. Spike run with --dm-auth: while dmstatus.authenticated=0 the DM
 #     "must not ... expose details about the harts connected to the DM";
 #     all DM registers except the listed exceptions read 0.
+#     (haltsum0 is not checked: Spike doesn't implement it, see 19.)
 set st [rd $DMSTATUS]
-set hs [rd 0x40]
 set hi [rd 0x12]
 set ac [rd $ABSTRACTCS]
-result 13 "unauthenticated reads: dmstatus/haltsum0/hartinfo/abstractcs" "$st/$hs/$hi/$ac" "only authenticated/authbusy/version nonzero in dmstatus; others 0" \
-    [expr {($st & ~0x000000cf) == 0 && $hs eq "0x00000000" && $hi eq "0x00000000" && $ac eq "0x00000000"}]
+result 13 "unauthenticated reads: dmstatus/hartinfo/abstractcs" "$st/$hi/$ac" "only authenticated/authbusy/version nonzero in dmstatus; others 0" \
+    [expr {($st & ~0x000000cf) == 0 && $hi eq "0x00000000" && $ac eq "0x00000000"}]
 
 } elseif {$SESSION eq "v10"} {
 
