@@ -1,0 +1,5 @@
+start: dmstatus=0x00430c82 (allhalted=0 allrunning=1 allresumeack=1)
+control, halt only: dmstatus=0x00430382 (allhalted=1 allrunning=0 allresumeack=1)
+after resume: dmstatus=0x00430c82 (allhalted=0 allrunning=1 allresumeack=1)
+after resumereq to running hart: dmstatus=0x00400c82 (allhalted=0 allrunning=1 allresumeack=0)
+halt after resumereq to running hart: dmstatus=0x00430382 (allhalted=1 allrunning=0 allresumeack=1)
