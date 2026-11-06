@@ -9,4 +9,4 @@ Standalone reproducers for issues filed against [riscv-software-src/riscv-isa-si
 | [riscv-isa-sim#2511](https://github.com/riscv-software-src/riscv-isa-sim/issues/2511)-[#2525](https://github.com/riscv-software-src/riscv-isa-sim/issues/2525) (Debug spec; list in the directory README) | [spike-debug-spec](spike-debug-spec/) | [spike-debug-spec.tar.gz](spike-debug-spec.tar.gz) |
 | [riscv-isa-sim#2527](https://github.com/riscv-software-src/riscv-isa-sim/issues/2527) | [spike-resumereq-running](spike-resumereq-running/) | [spike-resumereq-running.tar.gz](spike-resumereq-running.tar.gz) |
 | [riscv-isa-sim#2530](https://github.com/riscv-software-src/riscv-isa-sim/issues/2530) | [spike-ss-gstage](spike-ss-gstage/) | [spike-ss-gstage.tar.gz](spike-ss-gstage.tar.gz) |
-| (pending) | [spike-vgein-stale-vseip](spike-vgein-stale-vseip/) | [spike-vgein-stale-vseip.tar.gz](spike-vgein-stale-vseip.tar.gz) |
+| [riscv-isa-sim#2531](https://github.com/riscv-software-src/riscv-isa-sim/issues/2531) | [spike-vgein-stale-vseip](spike-vgein-stale-vseip/) | [spike-vgein-stale-vseip.tar.gz](spike-vgein-stale-vseip.tar.gz) |
