@@ -1,0 +1,13 @@
+
+RVCP-SUMMARY: TEST FAILED - Test File "exp_vseip.S"
+
+RVCP: DEBUG INFORMATION FOLLOWS
+RVCP: Test Info: exp_vseip: step 1: hip.VSEIP vg=0 he=0; expect 0x0000000000000000
+RVCP: Instruction: 0xfff00393
+RVCP: Approximate address (failure may be slightly after this): 0x00000000800010c8
+RVCP: Register: x5
+RVCP: Bad Value:      0x000000008000112c
+RVCP: Expected value unavailable: reconstructed signature pointer is invalid. Pointer: 0x000000008000cc08
+RVCP: END OF DEBUG INFORMATION
+
+*** FAILED *** (tohost = 1)
