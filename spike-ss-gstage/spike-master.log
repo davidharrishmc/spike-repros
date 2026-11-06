@@ -1,0 +1,6 @@
+core   0: 0x0000000080000140 (0xcdc0c073) sspopchk ra
+core   0: 0x0000000080000144 (0x00000073) ecall
+core   0: exception trap_virtual_supervisor_ecall, epc 0x0000000080000144
+core   0: 0x000000008000014e (0xce104073) sspush  ra
+core   0: 0x0000000080000152 (0x00000073) ecall
+core   0: exception trap_virtual_supervisor_ecall, epc 0x0000000080000152
