@@ -13,3 +13,5 @@ still 1, the DTE=0 write mask excludes SDT) and clears SIE unconditionally:
 
 `make run`: exit code / tohost = bitmask of failed checks (bit 1 SDT read, bit 2 SIE via sstatus, bit 3 SIE via
 mstatus). Expected: PASS. Actual: `*** FAILED *** (tohost = 12)` (checks 2 and 3).
+
+`dte2.S` (prebuilt `dte2-rv64.elf`, `dte2-rv32.elf`) adds check 4 (SDT reads 1 after the DTE = 1 write) and check 5: the same `csrsi sstatus, 2` executed in S-mode with DTE = 0. `spike --isa=rv64gch_smdbltrp_ssdbltrp dte2-rv64.elf` (rv32gch for the RV32 ELF) prints `*** FAILED *** (tohost = 44)`: checks 2, 3 and 5 fail. Sail, QEMU and Whisper pass. Build: `riscv64-unknown-elf-gcc -nostdlib -nostartfiles -T link.ld -I. -march=rv64gc_zicsr -mabi=lp64 dte2.S -o dte2-rv64.elf`.
